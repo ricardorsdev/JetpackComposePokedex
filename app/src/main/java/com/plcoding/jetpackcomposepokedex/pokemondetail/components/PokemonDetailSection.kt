@@ -14,11 +14,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.plcoding.jetpackcomposepokedex.data.remote.response.Pokemon
+import com.plcoding.jetpackcomposepokedex.data.models.PokemonEntry
 
 @Composable
 fun PokemonDetailSection(
-    pokemonInfo: Pokemon,
+    pokemonInfo: PokemonEntry,
     modifier: Modifier = Modifier
 ) {
     val scrollState = rememberScrollState()

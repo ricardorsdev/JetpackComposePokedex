@@ -10,15 +10,11 @@ import androidx.lifecycle.viewModelScope
 import androidx.palette.graphics.Palette
 import com.plcoding.jetpackcomposepokedex.data.models.PokedexListEntry
 import com.plcoding.jetpackcomposepokedex.repository.PokemonRepository
-import com.plcoding.jetpackcomposepokedex.util.Constants
 import com.plcoding.jetpackcomposepokedex.util.Constants.PAGE_SIZE
 import com.plcoding.jetpackcomposepokedex.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
-import retrofit2.http.Query
-import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -90,21 +86,10 @@ class PokemonListViewModel @Inject constructor(
             when (result) {
                 is Resource.Success -> {
                     endReached.value = currentPage * PAGE_SIZE >= result.data!!.count
-                    val pokedexEntries = result.data.results.mapIndexed { index, entry ->
-                        val number = if (entry.url.endsWith("/")) {
-                            entry.url.dropLast(1).takeLastWhile { it.isDigit() }
-                        } else {
-                            entry.url.takeLastWhile { it.isDigit() }
-                        }
-                        val url =
-                            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$number.png"
-                        PokedexListEntry(entry.name.capitalize(Locale.ROOT), url, number.toInt())
-                    }
-
                     currentPage++
                     loadError.value = ""
                     isLoading.value = false
-                    pokemonList.value += pokedexEntries
+                    pokemonList.value = result.data.results
                 }
 
                 is Resource.Error -> {

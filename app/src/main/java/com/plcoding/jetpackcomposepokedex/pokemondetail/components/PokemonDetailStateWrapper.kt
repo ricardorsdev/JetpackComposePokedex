@@ -8,12 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.plcoding.jetpackcomposepokedex.data.remote.response.Pokemon
+import com.plcoding.jetpackcomposepokedex.data.models.PokemonEntry
 import com.plcoding.jetpackcomposepokedex.util.Resource
 
 @Composable
 fun PokemonDetailStateWrapper(
-    pokemonInfo: Resource<Pokemon>,
+    pokemonInfo: Resource<PokemonEntry>,
     modifier: Modifier = Modifier,
     loadingModifier: Modifier = Modifier
 ) {

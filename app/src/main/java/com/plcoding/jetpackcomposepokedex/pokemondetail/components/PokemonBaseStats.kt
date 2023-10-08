@@ -11,13 +11,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.plcoding.jetpackcomposepokedex.data.remote.response.Pokemon
+import com.plcoding.jetpackcomposepokedex.data.models.PokemonEntry
 import com.plcoding.jetpackcomposepokedex.util.parseStatToAbbr
 import com.plcoding.jetpackcomposepokedex.util.parseStatToColor
 
 @Composable
 fun PokemonBaseStats(
-    pokemonInfo: Pokemon,
+    pokemonInfo: PokemonEntry,
     animDelayPerItem: Int = 100
 ) {
     val maxBaseStat = remember { pokemonInfo.stats.maxOf { it.baseStat } }

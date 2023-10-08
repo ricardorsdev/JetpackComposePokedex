@@ -1,6 +1,7 @@
 package com.plcoding.jetpackcomposepokedex.data.remote.response
 
 import com.google.gson.annotations.SerializedName
+import com.plcoding.jetpackcomposepokedex.data.local.entity.PokemonEntity
 
 data class Pokemon(
     val abilities: List<Ability>,
@@ -27,4 +28,16 @@ data class Pokemon(
     val stats: List<Stat>,
     val types: List<Type>,
     val weight: Int
-)
+) {
+    fun toPokemonEntity(): PokemonEntity {
+        return PokemonEntity(
+            id = id,
+            height = height,
+            name = name,
+            stats = stats,
+            types = types,
+            weight = weight,
+            sprites = sprites
+        )
+    }
+}
